@@ -30,3 +30,14 @@ apply: conj.
  +by apply: or_introl.
  +by apply: or_intror.
 Qed.
+
+Lemma JDM (T: Type)(P:T-> Prop):
+  ~(exists (x:T),P x) <-> forall x, ~(P x).
+
+Proof.
+apply: conj => Hyp.
+-move => x0 HPx0.
+ apply: Hyp.
+ by apply: (ex_intro P x0).
+-by case.
+Qed.
